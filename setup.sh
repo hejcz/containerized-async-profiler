@@ -1,5 +1,7 @@
 #! /bin/bash
 
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # setup async-profiler volume
 docker volume create async-profiler
 docker run --mount source=async-profiler,target=/profiler -i --rm alpine:3.15.0 /bin/sh <<EOF
@@ -10,6 +12,6 @@ cd /profiler
 EOF
 
 # build project
-cd app
-mvn clean install
-docker build -t async-profiler-test-app .
+source ${__dir}/build_app.sh
+
+
