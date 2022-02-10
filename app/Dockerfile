@@ -1,5 +1,9 @@
 FROM openjdk:17-jdk-oracle
 
-COPY target /target
+RUN useradd -ms /bin/bash app
 
-ENTRYPOINT /usr/java/openjdk-17/bin/java -jar /target/async-profiler-test-1.0-SNAPSHOT.jar
+USER app
+
+COPY target /home/app/target
+
+ENTRYPOINT /usr/java/openjdk-17/bin/java -jar /home/app/target/async-profiler-test-1.0-SNAPSHOT.jar
