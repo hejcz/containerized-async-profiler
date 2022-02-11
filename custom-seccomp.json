@@ -235,7 +235,7 @@
 				"openat",
 				"openat2",
 				"pause",
-        "perf_event_open",
+				"perf_event_open",
 				"pidfd_open",
 				"pidfd_send_signal",
 				"pipe",

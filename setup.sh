@@ -11,7 +11,10 @@ tar -xf async-profiler-2.6-linux-x64.tar.gz --strip-components=1 -C /profiler
 cd /profiler
 EOF
 
+# patch seccomp from master
+wget https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json -O custom-seccomp.json
+patch -p1 -d . < seccomp.patch
+
 # build project
 source ${__dir}/build_app.sh
-
-
+ 

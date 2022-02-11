@@ -1,0 +1,28 @@
+diff --git a/custom-seccomp.json b/custom-seccomp.json
+index 80213dd..dd145ae 100644
+--- a/custom-seccomp.json
++++ b/custom-seccomp.json
+@@ -233,10 +233,11 @@
+ 				"_newselect",
+ 				"open",
+ 				"openat",
+ 				"openat2",
+ 				"pause",
++				"perf_event_open",
+ 				"pidfd_open",
+ 				"pidfd_send_signal",
+ 				"pipe",
+ 				"pipe2",
+ 				"poll",
+@@ -564,11 +565,10 @@
+ 				"lookup_dcookie",
+ 				"mount",
+ 				"move_mount",
+ 				"name_to_handle_at",
+ 				"open_tree",
+-				"perf_event_open",
+ 				"quotactl",
+ 				"setdomainname",
+ 				"sethostname",
+ 				"setns",
+ 				"syslog",
