@@ -1,7 +1,15 @@
 #! /bin/bash
 
 docker stop app
-docker run -d --rm --mount source=async-profiler,target=/profiler --security-opt seccomp=custom-seccomp.json --name app async-profiler-test-app
-docker run -it --rm --pid=container:app --mount source=async-profiler,target=/profiler --name profiler async-profiler-test-profiler
 
-# su-exec-0.2/su-exec 1000:1000 /profiler/profiler.sh -d 20 -e cpu  -o html -f "/tmp/fg.html" 1
+# doesn't need seccomp nor privileged
+docker run -d --rm --mount source=async-profiler,target=/profiler --name app async-profiler-test-app
+
+# requires privileged to change kptr_restrict and perf_event_paranoid
+# required net for fdtransfer option in profiler
+docker run -it --rm --privileged \
+  --pid=container:app \
+  --net=container:app \
+  --mount source=async-profiler,target=/profiler \
+  --name profiler \
+  async-profiler-test-profiler

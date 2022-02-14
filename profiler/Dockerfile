@@ -11,4 +11,6 @@ RUN apt-get update \
   && apt-get -y autoremove \
   && apt-get clean
 
-ENTRYPOINT bash
+COPY docker_entrypoint.sh disable_kernel_perf_protection.sh enable_kernel_perf_protection.sh /root/
+
+ENTRYPOINT /root/docker_entrypoint.sh
